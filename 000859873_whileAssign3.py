@@ -3,6 +3,7 @@
 Chih-hung Wang
 Assignment 3
 while loop Print the song 99 Bottles of Beer on the Wall to the screen
+http://www.99-bottles-of-beer.net/lyrics.html
 """
 i=100
 while i>=1:
