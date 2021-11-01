@@ -26,24 +26,28 @@ Assignment 1
 
 
 # aniaml class
+from typing import Final
 class Animal():
+    __hand: Final = 0
+    __leg: Final = 4
     def __init__(self):
-        self.hand = 0
-        self.leg = 4
-        self.category="animal"
+        self.__hand=Animal.__hand
+        self.__leg=Animal.__leg
+        
 
     def looking(self):
-        print("Number of hands: {0}, Number of legs: {1}".format( self.hand,self.leg))
+        print("Number of hands: {0}, Number of legs: {1}".format(Animal.__hand,Animal.__leg))
 
 # felines class
 class Felines(Animal):
+    __family: Final = "the cat family"
     def __init__(self):
         Animal.__init__(self)
-        self.family= "cat family"
+        self.__family=Felines.__family
 
 
     def familyName(self):
-        print("Felines belongs to",self.family)
+        print("Felines belongs to",Felines.__family)
 
     def looking(self):
        Animal.looking(self)
@@ -51,12 +55,13 @@ class Felines(Animal):
 
 # tiger class
 class Tiger(Felines):
+    __behaviour: Final = "Tigers can roar and are lethal predators\n  "
     def __init__(self):
         Felines.__init__(self)
-        self.behaviour="Tigers can roar and are lethal predators\n  "
+        self.__behaviour=Tiger.__behaviour
 
     def behaivor(self):
-        print(self.behaviour)
+        print(Tiger.__behaviour)
 
     def looking(self):
        Animal.looking(self)
@@ -65,12 +70,13 @@ class Tiger(Felines):
 
 # wildCat class
 class WildCat(Felines):
+    __behaviour: Final = "Wild cats can climb trees\n  "
     def __init__(self):
         Felines.__init__(self)
-        self.behaviour="Wild cats can climb trees\n  "
+        self.__behaviour=WildCat.__behaviour
 
     def behaivor(self):
-        print(self.behaviour)
+        print(WildCat.__behaviour)
 
     def looking(self):
        Animal.looking(self)
@@ -82,12 +88,13 @@ class WildCat(Felines):
 
 # canines class
 class Canines(Animal):
+    __family: Final = "the dog family"
     def __init__(self):
         Animal.__init__(self)
-        self.family= "dog family"
+        self.__family=Canines.__family
 
     def familyName(self):
-        print("Canines belongs to",self.family)
+        print("Canines belongs to",Canines.__family)
 
     def looking(self):
        Animal.looking(self)
@@ -95,12 +102,13 @@ class Canines(Animal):
 
 # wolf class
 class Wolf(Canines):
+    __behaviour: Final = "Wolves hunt in packs and have a leader\n "
     def __init__(self):
         Canines.__init__(self)
-        self.behaviour="Wolves hunt in packs and have a leader\n "
+        self.__behaviour=Wolf.__behaviour
 
     def behaivor(self):
-        print(self.behaviour)
+        print(Wolf.__behaviour)
 
     def looking(self):
        Animal.looking(self)
@@ -111,21 +119,25 @@ class Wolf(Canines):
 
 # bird class
 class Bird():
+    __wing: Final = 2
+    __leg: Final = 2
+
     def __init__(self):
-        self.wing = 2
-        self.leg = 2
+        self.__wing=Bird.__wing
+        self.__leg=Bird.__leg
 
     def looking(self):
-        print("Number of wings: {0}, Number of legs: {1}".format( self.wing,self.leg))
+        print("Number of wings: {0}, Number of legs: {1}".format(Bird.__wing,Bird.__leg))
 
 # flightBird class
 class FlightBird(Bird):
+    __behaviour: Final = "Flight birds fly and hunt for food  "
     def __init__(self):
         Bird.__init__(self)
-        self.behaviour="Flight birds fly and hunt for food  "
+        self.__behaviour=FlightBird.__behaviour
 
     def behaivor(self):
-        print(self.behaviour)
+        print(FlightBird.__behaviour)
 
     def looking(self):
        Bird.looking(self)
@@ -133,12 +145,13 @@ class FlightBird(Bird):
 
 # eagle class
 class Eagle(FlightBird):
+    __behaviours: Final = "Eagles fly extremely high and can see their prey from high up in the sky\n "
     def __init__(self):
         FlightBird.__init__(self)
-        self.behaviours="Eagles fly extremely high and can see their prey from high up in the sky\n "
+        self.__behaviours=Eagle.__behaviours
 
     def behaivors(self):
-        print(self.behaviours)
+        print(Eagle.__behaviours)
 
     def looking(self):
        FlightBird.looking(self)
@@ -200,7 +213,7 @@ class Zoo():
 
 
 
-# test file
+# test
 
 
 zoo = Zoo()
