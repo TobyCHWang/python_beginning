@@ -26,136 +26,120 @@ Assignment 1
 
 
 # aniaml class
-from typing import Final
+
 class Animal():
-    __hand: Final = 0
-    __leg: Final = 4
     def __init__(self):
-        self.__hand=Animal.__hand
-        self.__leg=Animal.__leg
-        
+        self.__hand = 0
+        self.__leg = 4
+
 
     def looking(self):
-        print("Number of hands: {0}, Number of legs: {1}".format(Animal.__hand,Animal.__leg))
+        return (("Number of hands: {0}, Number of legs: {1}".format( self.__hand,self.__leg))+"\n")
 
 # felines class
 class Felines(Animal):
-    __family: Final = "the cat family"
     def __init__(self):
         Animal.__init__(self)
-        self.__family=Felines.__family
+        self.__family= "Felines belongs to the cat family\n"
 
 
-    def familyName(self):
-        print("Felines belongs to",Felines.__family)
+    def getFamilyName(self):
+        return self.__family
 
     def looking(self):
-       Animal.looking(self)
-       Felines.familyName(self)
+       return (Animal.looking(self)+Felines.getFamilyName(self))
+
 
 # tiger class
 class Tiger(Felines):
-    __behaviour: Final = "Tigers can roar and are lethal predators\n  "
     def __init__(self):
         Felines.__init__(self)
-        self.__behaviour=Tiger.__behaviour
+        self.__behaviour="Tigers can roar and are lethal predators\n  "
 
-    def behaivor(self):
-        print(Tiger.__behaviour)
+ 
+    def getBehaivor(self):
+        return self.__behaviour
 
     def looking(self):
-       Animal.looking(self)
-       Felines.familyName(self)
-       Tiger.behaivor(self)
+       return (Felines.looking(self)+Tiger.getBehaivor(self))
 
+#Please consider all the above comments and address them in the following classes
 # wildCat class
 class WildCat(Felines):
-    __behaviour: Final = "Wild cats can climb trees\n  "
     def __init__(self):
         Felines.__init__(self)
-        self.__behaviour=WildCat.__behaviour
+        self.__behaviour="Wild cats can climb trees\n  "
 
-    def behaivor(self):
-        print(WildCat.__behaviour)
+    def getBehaivor(self):
+        return self.__behaviour
 
     def looking(self):
-       Animal.looking(self)
-       Felines.familyName(self)
-       WildCat.behaivor(self)
+       return (Felines.looking(self)+WildCat.getBehaivor(self))
 
 
 
 
 # canines class
 class Canines(Animal):
-    __family: Final = "the dog family"
     def __init__(self):
         Animal.__init__(self)
-        self.__family=Canines.__family
+        self.__family= "Canines belongs to the dog family\n"
 
-    def familyName(self):
-        print("Canines belongs to",Canines.__family)
+    def getFamilyName(self):
+        return self.__family
 
     def looking(self):
-       Animal.looking(self)
-       Canines.familyName(self)
+       return (Animal.looking(self)+Canines.getFamilyName(self))
+
 
 # wolf class
 class Wolf(Canines):
-    __behaviour: Final = "Wolves hunt in packs and have a leader\n "
     def __init__(self):
         Canines.__init__(self)
-        self.__behaviour=Wolf.__behaviour
+        self.__behaviour="Wolves hunt in packs and have a leader\n "
 
-    def behaivor(self):
-        print(Wolf.__behaviour)
+    def getBehaivor(self):
+        return self.__behaviour
 
     def looking(self):
-       Animal.looking(self)
-       Canines.familyName(self)
-       Wolf.behaivor(self)
+       return (Canines.looking(self)+Wolf.getBehaivor(self))
 
 
 
 # bird class
 class Bird():
-    __wing: Final = 2
-    __leg: Final = 2
-
     def __init__(self):
-        self.__wing=Bird.__wing
-        self.__leg=Bird.__leg
+        self.__wing = 2
+        self.__leg = 2
 
     def looking(self):
-        print("Number of wings: {0}, Number of legs: {1}".format(Bird.__wing,Bird.__leg))
+        return (("Number of wings: {0}, Number of legs: {1}".format( self.__wing,self.__leg))+"\n")
 
 # flightBird class
 class FlightBird(Bird):
-    __behaviour: Final = "Flight birds fly and hunt for food  "
     def __init__(self):
         Bird.__init__(self)
-        self.__behaviour=FlightBird.__behaviour
+        self.__behaviour="Flight birds fly and hunt for food\n"
 
-    def behaivor(self):
-        print(FlightBird.__behaviour)
+    def getBehaivor(self):
+        return self.__behaviour
 
     def looking(self):
-       Bird.looking(self)
-       FlightBird.behaivor(self)
+       return (Bird.looking(self)+FlightBird.getBehaivor(self))
+
 
 # eagle class
 class Eagle(FlightBird):
-    __behaviours: Final = "Eagles fly extremely high and can see their prey from high up in the sky\n "
     def __init__(self):
         FlightBird.__init__(self)
-        self.__behaviours=Eagle.__behaviours
+        self.__behaviours="Eagles fly extremely high and can see their prey from high up in the sky "
 
-    def behaivors(self):
-        print(Eagle.__behaviours)
+    def getBehaivor(self):
+        return (self.__behaviours)
 
     def looking(self):
-       FlightBird.looking(self)
-       Eagle.behaivors(self)
+       return (FlightBird.looking(self)+Eagle.getBehaivor(self))
+
 
 
 # zoo class
@@ -200,13 +184,13 @@ class Zoo():
             if isinstance(i, Animal):
                 result_animal += 1
                 if result_animal<=2:
-                    i.looking()
+                    print(i.looking())
 
 
             elif isinstance(i, Bird) :
                 result_bird += 1
                 if result_bird <= 2:
-                    i.looking()
+                    print(i.looking())
 
 
 
