@@ -4,24 +4,13 @@ Chih-hung Wang
 Assignment 2
 """
 
-# Create a zoo that can have 2 animals and 1 bird.
-# Zoo should be able to add only an animal or a bird if it is not full
-# Each animal has some common features like the number of hands and legs.
-# Felines and canines have 4 legs and no hands
-# Each bird has a number of legs and number of wings as a feature.
-# Flight birds have 2 legs and 2 wings.
-# Dog and cat family and birds belong to animal
-# Felines belong to the cat family
-# Tiger and cat belong to Felines
-# Tigers can roar and are lethal predators
-# Wild cats can climb trees
-# Canines belong to the dog family.
-# Wolves hunt in packs and have a leader
-# Wolves belong to the Canines.
-# Flight birds belong to the bird family.
-# Flight birds fly and hunt for food
-# Eagles belongs to Flight birds
-# Eagles fly extremely high and can see their prey from high up in the sky.
+# For this assignment, your goal is to anticipate and handle exceptions that may occur in a program.
+# This assignment is designed to measure and assess your ability to:
+# Understand and handle a variety of exceptions thrown by the program.
+# Consider how exceptions are used to enforce validations.
+# Design and use simple regular expressions
+# Create and use lambdas and higher order functions.
+
 
 
 
@@ -152,9 +141,10 @@ class Eagle(FlightBird):
     def looking(self):
        return (FlightBird.looking(self)+Eagle.getBehaivor(self))
 
+# exception
 class NumberError(Exception):
     pass
-
+# exception
 class AddError(Exception):
     pass
 
@@ -164,24 +154,6 @@ class Zoo():
     def __init__(self):
         self.list=[]
 
-    # tiger
-    def tiger(self,tiger):
-        if isinstance(tiger, Tiger):
-            return True
-
-    # wild cat
-    def wildcat(self,wildcat):
-        if isinstance(wildcat, WildCat):
-            return True
-    # wolves
-    def wolf(self, wolf):
-        if isinstance(wolf, Wolf):
-            return True
-
-    # eagle
-    def eagle(self, eagle):
-        if isinstance(eagle,Eagle):
-            return True
 
     def add(self,type):
         if not isinstance(type,(Animal,Bird)):
@@ -192,18 +164,18 @@ class Zoo():
             result_animal = 0
             result_bird = 0
             # filter tiger
-            tiger = filter(self.tiger, self.list)
+            tiger = filter(lambda tiger:isinstance(tiger,Tiger), self.list)
             count_tiger = len(list(tiger))
             # filter wild cat
-            wildcat = filter(self.wildcat, self.list)
+            wildcat = filter(lambda wildcat:isinstance(wildcat,WildCat), self.list)
             count_wildcat = len(list(wildcat))
 
             # filter wolf
-            wolf = filter(self.wolf, self.list)
+            wolf = filter(lambda wolf:isinstance(wolf,Wolf), self.list)
             count_wolf = len(list(wolf))
 
             # filter eagle
-            eagle = filter(self.eagle, self.list)
+            eagle = filter(lambda eagle:isinstance(eagle,Eagle), self.list)
             count_eagle = len(list(eagle))
 
             if count_tiger > 1:
@@ -233,11 +205,12 @@ class Zoo():
                 if result_bird > 1:
                     raise NumberError
 
-
+        # exception
         except NumberError:
             print("Error in adding animal/bird")
         except AddError:
             print("Animal already exists")
+        # else
         else:
             print("Added successfully\n")
 
@@ -247,62 +220,54 @@ class Zoo():
 
     def looking(self):
 
-
-
-        def animal(a):
-                if isinstance(a, Animal):
-                    return True
-
-        def bird(a):
-                if isinstance(a, Bird):
-                    return True
-
         # animal
-        animal_filter=filter(animal,self.list)
+        animal_filter=filter(lambda animal:isinstance(animal,Animal),self.list)
         animal_lst=(list(animal_filter))
 
 
         # bird
-        bird_filter = filter(bird, self.list)
+        bird_filter = filter(lambda bird:isinstance(bird,Bird), self.list)
         bird_lst = (list(bird_filter))
 
 
         # map
-        def map_filt(a):
-            if isinstance(a,Animal):
-                return 1
-            elif isinstance(a,Bird):
-                return 2
-        animal_map_lst=map(map_filt, self.list)
-        bird_map_lst =map(map_filt, self.list)
+        # def map_filt(a):
+        #     if isinstance(a,Animal):
+        #         return 1
+        #     elif isinstance(a,Bird):
+        #         return 2
+
+        # tiger_map = map(lambda map_tiger: "Tiger" if isinstance(map_tiger, Tiger) else "No", self.list)
+        animal_map_lst=map(lambda map_filter:1 if isinstance(map_filter,Animal)
+                           else(2 if isinstance(map_filter,Bird) else 66), self.list)
+        bird_map_lst =map(lambda map_filter:1 if isinstance(map_filter,Animal)
+                           else(2 if isinstance(map_filter,Bird) else 66), self.list)
 
         # map filter
 
-        def map_animal(a):
-            if a==1:
-                return True
+        # def map_animal(a):
+        #     if a==1:
+        #         return True
+        #
+        # def map_bird(a):
+        #     if a==2:
+        #         return True
 
-        def map_bird(a):
-            if a==2:
-                return True
-
-        map_animal_filter=filter(map_animal,animal_map_lst)
+        map_animal_filter=filter(lambda map_animal:True if map_animal==1 else False,animal_map_lst)
         map_animal_filter_list = list(map_animal_filter)
 
-        map_bird_filter = filter(map_bird, bird_map_lst)
+        map_bird_filter = filter(lambda map_animal:True if map_animal==2 else False, bird_map_lst)
         map_bird_filter_list = list(map_bird_filter)
 
 
 
         # reduce
-        def calc(acc, ele):
-             return acc + 1
 
         map_animal_filter_list.append(0)
         map_bird_filter_list.append(0)
 
-        result_animal=functools.reduce(calc,map_animal_filter_list)
-        result_bird =functools.reduce(calc, map_bird_filter_list)
+        result_animal=functools.reduce(lambda acc,ele:acc+1,map_animal_filter_list)
+        result_bird =functools.reduce(lambda acc,ele:acc+1, map_bird_filter_list)
 
 
 
@@ -327,11 +292,9 @@ class Zoo():
 
 # find_canine method
     def find_canine(self):
-      def canine_filter(a):
-         if isinstance(a, Canines):
-              return True
 
-      canine_filter_l = filter(canine_filter, self.list)
+
+      canine_filter_l = filter(lambda canine:isinstance(canine,Canines), self.list)
       canine_filter_list=list(canine_filter_l)
 
       def look_at_member(listOfObjects):
@@ -342,13 +305,13 @@ class Zoo():
 
 # find_tiger
     def find_tiger(self):
-        def map_tiger(a):
-            if isinstance(a, Tiger):
-                return "Tiger"
-            else:
-                return "No"
+        # def map_tiger(a):
+        #     if isinstance(a, Tiger):
+        #         return "Tiger"
+        #     else:
+        #         return "No"
 
-        tiger_map=map(map_tiger,self.list)
+        tiger_map=map(lambda map_tiger:"Tiger" if isinstance(map_tiger,Tiger) else "No",self.list)
         tiger_map_list=list(tiger_map)
 
 
@@ -364,16 +327,6 @@ class Zoo():
         else:
             tiger_obj=self.list[index]
             print(tiger_obj.looking())
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,7 +348,7 @@ zoo.find_tiger()
 # #
 # # zoo.find_canine()
 #
-# # zoo.add(Tiger())
+# zoo.add(Tiger())
 # zoo.add(WildCat())
 # # zoo.add(WildCat())# should display animal added
 # zoo.add(Wolf())
